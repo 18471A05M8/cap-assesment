@@ -1,0 +1,108 @@
+###	Get the Service document
+http://localhost:4004/odata/v4/employeetest
+###Get the Service metadata document.
+http://localhost:4004/odata/v4/employeetest/$metadata
+
+###get all employees data
+get http://localhost:4004/odata/v4/employeetest/EmployeeSet
+
+###Get all the Employees whose name starts with ‘S’.
+GET http://localhost:4004/odata/v4/employeetest/EmployeeSet?$filter=contains(nameFirst,'S')
+
+###Get the top 2 employees, use orderby salaryAmount.
+http://localhost:4004/odata/v4/employeetest/EmployeeSet?$orderby=salaryAmount&$top=2 
+
+###CREATE an employee with salary <50000 & currency code USD.
+POST http://localhost:4004/odata/v4/employeetest/EmployeeSet
+Content-Type: application/json
+ 
+{
+    "nameFirst": "tauheer",
+    "nameMiddle":"Shaik",
+    "nameLast": "Spring",
+    "nameInitials":"abc",
+    "Gender": "M",
+    "language": "E",
+    "phoneNumber": "+1 224 374 524",
+    "Email": "tauheer.ahamed@itelo.info",
+    "loginName": "tauheer",
+    "Currency_code": "USD",
+    "salaryAmount": 45000,
+    "accountNumber": "1112222323",
+    "bankId": "5100098",
+    "bankName": "My Bank of Australia"
+}
+
+###CREATE an employee with salary >50000 & currency code USD.
+POST http://localhost:4004/odata/v4/employeetest/EmployeeSet
+Content-Type: application/json
+ 
+{
+    "nameFirst": "tauheer1",
+    "nameMiddle":"Shaik",
+    "nameLast": "Spring",
+    "nameInitials":"abc",
+    "Gender": "M",
+    "language": "E",
+    "phoneNumber": "+1 224 374 524",
+    "Email": "tauheer.ahamed@itelo.info",
+    "loginName": "tauheer",
+    "Currency_code": "USD",
+    "salaryAmount": 55000,
+    "accountNumber": "1112222323",
+    "bankId": "5100098",
+    "bankName": "My Bank of Australia"
+}
+
+
+###CREATE an employee with salary <50000 & currency code EUR.
+POST http://localhost:4004/odata/v4/employeetest/EmployeeSet
+Content-Type: application/json
+ 
+{
+    "nameFirst": "tauheer",
+    "nameMiddle":"Shaik",
+    "nameLast": "Spring",
+    "nameInitials":"abc",
+    "Gender": "M",
+    "language": "E",
+    "phoneNumber": "+1 224 374 524",
+    "Email": "tauheer.ahamed@itelo.info",
+    "loginName": "tauheer",
+    "Currency_code": "EUR",
+    "salaryAmount": 45000,
+    "accountNumber": "1112222323",
+    "bankId": "5100098",
+    "bankName": "My Bank of Australia"
+}
+
+
+###UPDATE an employee by keeping the nameFirst and loginName intact.
+PATCH http://localhost:4004/odata/v4/employeetest/EmployeeSet(ID=02BD2137-0890-1EEA-A6C2-BB55C19787FB,IsActiveEntity=true)
+Content-Type: application/json
+ 
+{
+      "nameFirst": "Sally",
+      "nameMiddle": null,
+      "nameLast": "Spring",
+      "nameInitials": null,
+      "Gender": "F",
+      "language": "E",
+      "phoneNumber": "9966875334",
+      "email": "sally.spring@itelo.info",
+      "loginName": "SPRINGS",
+      "Currency_code": "USD",
+      "salaryAmount": 40099,
+      "accountNumber": "111222333",
+      "bankId": "5100006",
+      "bankName": "My Bank of Antioch"
+    }
+ 
+###UPDATE an employee by changing the loginName.
+
+
+###DELETE any employee.
+DELETE http://localhost:4004/odata/v4/employeetest/EmployeeSet(ID=02BD2137-0890-1EEA-A6C2-BB55C19787FB,IsActiveEntity=true)
+
+###DELETE an employee whose nameFirst starts with ‘S’.
+DELETE http://localhost:4004/odata/v4/employeetest/EmployeeSet?$filter=contains(nameFirst,'S')
